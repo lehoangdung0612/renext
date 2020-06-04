@@ -1,0 +1,25 @@
+{
+    "compilerOptions": {
+      "baseUrl": "./src",
+      "target": "es2018",
+      "paths": {
+        "@screen/*": ["./screen/*"],
+        "@component/*": ["./component/*"],
+        "@lib/*": ["./lib/*"],
+        "@navigation/*": ["./navigation/*"],
+        "@redux/*": ["./redux/*"],
+        "@constant/*": ["./constant/*"],
+        "@theme/*": ["./theme/*"],
+        "@assets/*": ["./assets/*"],
+        "@images/*": ["./images/*"],
+        "@lang/*": ["./lang/*"],
+        "@reducer/*": ["./reducer/*"],
+        "@bootstrap/*": ["./bootstrap/*"],
+        "@context/*": ["./context/*"],
+      }
+    },
+    "exclude": [
+      "src/share/internals",
+      "node_modules"
+    ]
+  }

@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "553944996183",
+    "firebase_url": "https://react-research.firebaseio.com",
+    "project_id": "react-research",
+    "storage_bucket": "react-research.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:553944996183:android:c386e8828c02098d",
+        "android_client_info": {
+          "package_name": "com.renext"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "553944996183-m3me3ra8g4n0o8lud5ee2oknjdb98er2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB7zvQzjo4B_JFHSYG5B4mkDqKf8ilEFUM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "553944996183-m3me3ra8g4n0o8lud5ee2oknjdb98er2.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "553944996183-2jkfn2nteurevqg5jk4kf0jb8of68rd8.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "org.reactjs.native.example.renext"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

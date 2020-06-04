@@ -1,0 +1,11 @@
+import { takeEvery, put, select } from 'redux-saga/effects';
+import { DEFAULT_ACTION } from './constants';
+
+export function* testSaga() {
+  const state = yield select();
+  console.log('state', state);
+}
+
+export default function* defaultSaga() {
+  yield takeEvery(DEFAULT_ACTION, testSaga);
+}
