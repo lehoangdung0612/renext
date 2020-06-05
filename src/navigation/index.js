@@ -14,6 +14,7 @@ import { createAppContainer } from 'react-navigation';
 import { createDrawerNavigator } from 'react-navigation-drawer';
 import { createSharedElementStackNavigator } from 'react-navigation-shared-element';
 import Liquid from '@screen/Liquid/index';
+import AccSensor from '@screen/AccSensor/index';
 
 const sharedNavigator = createSharedElementStackNavigator(
   {
@@ -44,9 +45,10 @@ const AppNavigator = createDrawerNavigator(
   {
     shared: sharedNavigator,
     liquid: Liquid,
+    accSensor: AccSensor,
   },
   {
-    initialRouteName: 'liquid',
+    initialRouteName: 'accSensor',
     headerMode: 'none',
     backBehavior: 'none',
     defaultNavigationOptions: {
