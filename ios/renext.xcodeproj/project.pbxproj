@@ -136,6 +136,7 @@
 				00DD1BFF1BD5951E006B06BC /* Bundle React Native code and images */,
 				4F1674A4265FAC0C2E9D5162 /* [CP] Copy Pods Resources */,
 				52D19F4D68F95E2EFE278B83 /* [CP-User] [RNFB] Core Configuration */,
+				3A44F4144CB089C28788E47E /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -201,6 +202,28 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "export NODE_BINARY=node\n../node_modules/react-native/scripts/react-native-xcode.sh";
+		};
+		3A44F4144CB089C28788E47E /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-renext/Pods-renext-frameworks.sh",
+				"${PODS_ROOT}/../../node_modules/react-native-mtbeacon-plus/ios/MTBeaconPlus.framework",
+				"${PODS_ROOT}/../../node_modules/react-native-mtbeacon-plus/ios/iOSDFULibrary.framework",
+				"${PODS_ROOT}/../../node_modules/react-native-mtbeacon-plus/ios/Zip.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MTBeaconPlus.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/iOSDFULibrary.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Zip.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-renext/Pods-renext-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		4F1674A4265FAC0C2E9D5162 /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -347,6 +370,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = renext;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Debug;
@@ -366,6 +390,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = "org.reactjs.native.example.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = renext;
+				SWIFT_VERSION = 5.0;
 				VERSIONING_SYSTEM = "apple-generic";
 			};
 			name = Release;

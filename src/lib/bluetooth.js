@@ -1,5 +1,6 @@
 import _ from 'lodash';
 import { MTBeaconPlusManager, State } from 'react-native-mtbeacon-plus';
+import UtilLib from './util';
 
 const bluetoothState = {
   isActiveScan: false,
@@ -10,7 +11,7 @@ const bluetoothState = {
 
 const getDeviceInfo = device => ({
   id: device.id,
-  mac: formatMacAddress(device.mac),
+  mac: UtilLib.formatMacAddress(device.mac),
   name: device.name,
   rssi: device.rssi,
   battery_health: device.battery,
@@ -18,24 +19,6 @@ const getDeviceInfo = device => ({
   iBeacon: device.iBeacon,
   accSensor: device.accSensor,
 });
-
-const formatMacAddress = mac => {
-  try {
-    const macString = mac.toUpperCase();
-    if (ValidateLib.isValidMacAddress(macString)) {
-      return macString;
-    }
-
-    const convertMac = [];
-    for (let i = 0; i < macString.length; i = i + 2) {
-      convertMac.push(macString.substr(i, 2));
-    }
-    const macAddress = convertMac.join(':');
-    return ValidateLib.isValidMacAddress(macAddress) ? macAddress : null;
-  } catch (error) {
-    return null;
-  }
-};
 
 class BluetoothModule {
   constructor() {
@@ -60,8 +43,7 @@ class BluetoothModule {
       this.beaconPlusManager.startScan(devices => {
         bluetoothState.devices = devices.map(device => getDeviceInfo(device));
         if (typeof handler === 'function') {
-          const listDevices = this.listDevices();
-          handler(listDevices);
+          handler(bluetoothState.devices);
         }
       });
 
