@@ -32,6 +32,12 @@ class AccSensor extends React.Component {
 
   componentDidMount() {
     this.onPressHandler();
+
+    BluetoothLib.setOnStateChange(state => {
+      if (state === BluetoothLib.State.PoweredOff) {
+        this.stopScan();
+      }
+    });
   }
 
   componentWillUnMount() {
@@ -88,19 +94,22 @@ class AccSensor extends React.Component {
       const newX = Math.min(1, Math.max(-1, accSensor.xAxis));
       const newY = Math.min(1, Math.max(-1, accSensor.yAxis));
       const newZ = Math.min(1, Math.max(-1, accSensor.zAxis));
-      console.log(accSensor);
       this.animate(newX, newY, newZ);
     }
   };
 
   onPressHandler = () => {
-    if (this.state.actionName === 'Start') {
-      this.startScan();
-      this.setState({ actionName: 'Stop' });
-    } else {
-      this.stopScan();
-      this.setState({ actionName: 'Start' });
-    }
+    BluetoothLib.getState().then(blState => {
+      if (blState === BluetoothLib.State.PoweredOn) {
+        if (this.state.actionName === 'Start') {
+          this.startScan();
+          this.setState({ actionName: 'Stop' });
+        } else {
+          this.stopScan();
+          this.setState({ actionName: 'Start' });
+        }
+      }
+    });
   };
 
   renderModel = () => {
