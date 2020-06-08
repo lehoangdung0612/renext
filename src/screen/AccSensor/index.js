@@ -22,6 +22,10 @@ class AccSensor extends React.Component {
       xAxis: new Animated.Value(0),
       yAxis: new Animated.Value(0),
       zAxis: new Animated.Value(0),
+      rotateX: new Animated.Value(-90),
+      rotateY: new Animated.Value(0),
+      fromXY: undefined,
+      valueXY: undefined,
     };
     Object.keys(this.state).forEach(key => {
       if (this.state[key] instanceof Animated.Value) {
@@ -68,7 +72,7 @@ class AccSensor extends React.Component {
     // });
 
     const xDeg = Math.round((Math.asin(aX) * 180) / Math.PI);
-    const yDeg = Math.round((Math.asin(aY) * 180) / Math.PI);
+    const yDeg = -Math.round((Math.asin(aY) * 180) / Math.PI);
     const zDeg = Math.round((Math.asin(aZ) * 180) / Math.PI);
 
     Animated.parallel([
@@ -113,7 +117,7 @@ class AccSensor extends React.Component {
   };
 
   renderModel = () => {
-    const { xAxis, yAxis, zAxis } = this.state;
+    const { xAxis, yAxis, fromXY, rotateY } = this.state;
     // const xExtra = zAxis < 0 ? 180 : 0;
     // const yExtra = zAxis < 0 ? 180 : 0;
     // const zExtra = xAxis > 0 || yAxis > 0 ? 180 : 0;
@@ -123,21 +127,45 @@ class AccSensor extends React.Component {
     return (
       <AnimatedModelView
         model={{
-          uri: 'demon.obj',
+          uri: 'car.obj',
         }}
         texture={{
-          uri: 'demon.png',
+          uri: 'demon.mtl',
         }}
         scale={0.01}
-        translateZ={-2.5}
+        translateY={-20}
+        translateZ={-50}
         rotateX={xAxis}
-        rotateY={yAxis}
-        rotateZ={0}
-        animate
+        rotateY={rotateY}
+        rotateZ={yAxis}
+        animate={!!fromXY}
         style={AppStyle.styleguide.flex1}
         onStartShouldSetResponder={() => true}
+        onResponderRelease={this.onMoveEnd}
+        onResponderMove={this.onMove}
       />
     );
+  };
+
+  onMoveEnd = () => {
+    this.setState({
+      fromXY: undefined,
+    });
+  };
+
+  onMove = e => {
+    console.log(e.nativeEvent)
+    let { pageX, pageY } = e.nativeEvent,
+      { rotateX, rotateY, fromXY, valueXY } = this.state;
+    if (!this.state.fromXY) {
+      this.setState({
+        fromXY: [pageX, pageY],
+        valueXY: [rotateY.__getValue(), rotateX.__getValue()],
+      });
+    } else {
+      rotateY.setValue(valueXY[0] + (pageX - fromXY[0]) / 2);
+      rotateX.setValue(valueXY[1] + (pageY - fromXY[1]) / 2);
+    }
   };
 
   render() {
